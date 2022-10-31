@@ -12,13 +12,15 @@ def main():
         draw_building()
     elif run_program == "6":
         draw_transition()
+    elif run_program == "7":
+        swap_tiles()
 
 
 def save_tiles():  # 1
-    for x in range(20, 25):
+    for x in range(25):
         for y in range(15):
-            print(f'on zsaveTilex{x}y{y} do')
-            for room in range(80):
+            print(f'\non zsaveTilex{x}y{y} do')
+            for room in range(10):
                 if room == 0:
                     print(f' if event.room == "room{room}" then')
                 else:
@@ -28,7 +30,27 @@ def save_tiles():  # 1
                 if room == 79:
                     print(f' end')
 
-            print("end\n")
+            print(f' end'
+                  f'\nend')
+
+
+def swap_tiles():  # 7
+    for x in range(25):
+        for y in range(15):
+            print(f'\non zswapTilex{x}y{y} do')
+            for room in range(10):
+                if room == 0:
+                    print(f'  if event.room == "room{room}" then')
+                else:
+                    print(f'  elseif event.room == "room{room}" then')
+                print(f'    if tileNameCheck != tilex{x}y{y}room{room} then'
+                      f'\n      tell {x},{y} to'
+                      f'\n        swap tilex{x}y{y}room{room}'
+                      f'\n      end'
+                      f'\n    end')
+
+            print(f'  end'
+                  f'\nend')
 
 
 def update_tiles():  # 2
@@ -43,9 +65,15 @@ def update_tiles():  # 2
         count = 0
         x = start_x
         while count != 4:
-            print(f'    tell swapX,{y} to\n      swap "watertank{amount}x{x}"\n    end')
+            print(f'    tell swapX,{y} to'
+                  f'      swap "watertank{amount}x{x}"'
+                  f'    end')
+
             if amount == 9 or amount == 17:
-                print(f'    tell swapX,{y - 1} to\n      swap "watertank0x{x}"\n    end')
+                print(f'    tell swapX,{y - 1} to'
+                      f'      swap "watertank0x{x}"'
+                      f'    end')
+
             count += 1
             x += 1
             if count != 4:
@@ -54,8 +82,33 @@ def update_tiles():  # 2
 
 
 def replace_word():  # 3
-    code = ''''''
-    print(code.replace("drawBuilderX", "previewBuilderX"))
+    code = '''on drawBasicBot1 do
+	drawBotX = basicBot1DecimalX
+	
+	if basicBot1Face=="Right" then
+		
+		draw "basicBotRight0" at drawBotX,12
+		draw "basicBotRight2" at drawBotX,13
+		draw "basicBotRight4" at drawBotX,14
+		
+		drawBotX++
+		draw "basicBotRight1" at drawBotX,12
+		draw "basicBotRight3" at drawBotX,13
+		draw "basicBotRight5" at drawBotX,14
+		
+	elseif basicBot1Face=="Left" then
+		
+		draw "basicBotLeft0" at drawBotX,12
+		draw "basicBotLeft2" at drawBotX,13
+		draw "basicBotLeft4" at drawBotX,14
+		
+		drawBotX++
+		draw "basicBotLeft1" at drawBotX,12
+		draw "basicBotLeft3" at drawBotX,13
+		draw "basicBotLeft5" at drawBotX,14
+	end
+end'''
+    print(code.replace("Bot1", "Bot2"))
 
 
 def swap_building():  # 4
