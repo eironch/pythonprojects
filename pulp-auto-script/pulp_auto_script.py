@@ -1,7 +1,9 @@
+import sys
+
 def main():
     run_program = input("Which method to run? ")
     if run_program == "1":
-        save_tiles()
+        tile_operation()
     elif run_program == "2":
         update_tiles()
     elif run_program == "3":
@@ -13,44 +15,105 @@ def main():
     elif run_program == "6":
         draw_transition()
     elif run_program == "7":
-        swap_tiles()
+        update_tiles_off_screen()
 
 
-def save_tiles():  # 1
+def tile_operation():  # 1
     for x in range(25):
         for y in range(15):
-            print(f'\non zsaveTilex{x}y{y} do')
-            for room in range(10):
+            print(f'\non doTilex{x}y{y} do')
+            for room in range(5):
                 if room == 0:
-                    print(f' if event.room == "room{room}" then')
+                    print(f'  if checkRoom == "room{room}" then')
                 else:
-                    print(f' elseif event.room == "room{room}" then')
-                print(f'   tilex{x}y{y}room{room} = tileNameCheck')
+                    print(f'  elseif checkRoom == "room{room}" then')
+                print(f'    if tileOperation == "save" then')
+                print(f'      tilex{x}y{y}room{room} = tileNameSave')
+                print(f'    elseif tileOperation == "swap" then')
+                print(f'      if tileNameSwap != tilex{x}y{y}room{room} then')
+                print(f'        tell {x},{y} to')
+                print(f'          swap tilex{x}y{y}room{room}')
+                print(f'        end')
+                print(f'      end')
+                print(f'    elseif tileOperation == "check" then')
+                print(f'      tileNameCheck = tilex{x}y{y}room{room}')
+                print(f'    elseif tileOperation == "change" then')
+                print(f'      tilex{x}y{y}room{room} = tileNameChange')
+                print(f'    end')
 
-                if room == 79:
-                    print(f' end')
-
-            print(f' end'
-                  f'\nend')
+            print(f'  end')
+            print(f'end')
 
 
-def swap_tiles():  # 7
-    for x in range(25):
-        for y in range(15):
-            print(f'\non zswapTilex{x}y{y} do')
-            for room in range(10):
-                if room == 0:
-                    print(f'  if event.room == "room{room}" then')
-                else:
-                    print(f'  elseif event.room == "room{room}" then')
-                print(f'    if tileNameCheck != tilex{x}y{y}room{room} then'
-                      f'\n      tell {x},{y} to'
-                      f'\n        swap tilex{x}y{y}room{room}'
-                      f'\n      end'
-                      f'\n    end')
+def update_tiles_off_screen():  # 7
+    start_x = 3
+    y = 13
+    print(f'on swapNutriDispenserOffScreen do')
+    print(f'  tileOperation = "change"')
+    print('')
+    print(f'  tell "main.tile" to')
+    for amount in range(0, 31):
+        if amount in [4, 12, 20, 28]:
+            y -= 1
+            start_x += 5
 
-            print(f'  end'
-                  f'\nend')
+        if amount == 0:
+            print(f'    if amount == {amount} then')
+        else:
+            print(f'    elseif amount == {amount} then')
+
+        print(f'      tileNameChange = "nutridispenser{amount}x{start_x}"')
+        print( '      call "doTilex{x}' + f'y{y}"')
+
+        if amount in [3, 11, 19, 27]:
+            print(f'      tileNameChange = "nutridispenser0x{start_x + 5}"')
+            print('      call "doTilex{x}' + f'y{y - 1}"')
+
+    print(f'    end')
+    print(f'  end')
+    print(f'end')
+
+
+# water tank
+"""
+def update_tiles_off_screen():  # 7
+    start_x = 4
+    y = 12
+    print(f'on swapWaterTankOffScreen do')
+    print(f'  swapX = x')
+    print(f'  tileOperation = "change"')
+    print(f'')
+    print(f'  tell "main.tile" to')
+    for amount in range(0, 23):
+        if amount in [2, 10, 18]:
+            y -= 1
+            start_x += 4
+
+        if amount == 0:
+            print(f'    if amount == {amount} then')
+        else:
+            print(f'    elseif amount == {amount} then')
+
+        count = 0
+        x = start_x
+
+        while count != 4:
+            print(f'      tileNameChange = "watertank{amount}x{x}"')
+            print( '      call "doTilex{swapX}' + f'y{y}"')
+
+            if amount in [1, 9, 17]:
+                print(f'      tileNameChange = "watertank0x{x + 4}"')
+                print( '      call "doTilex{swapX}' + f'y{y - 1}"')
+
+            count += 1
+            x += 1
+            if count != 4:
+                print("      swapX++")
+
+    print(f'    end')
+    print(f'  end')
+    print(f'end')
+"""
 
 
 def update_tiles():  # 2
@@ -82,33 +145,12 @@ def update_tiles():  # 2
 
 
 def replace_word():  # 3
-    code = '''on drawBasicBot1 do
-	drawBotX = basicBot1DecimalX
-	
-	if basicBot1Face=="Right" then
-		
-		draw "basicBotRight0" at drawBotX,12
-		draw "basicBotRight2" at drawBotX,13
-		draw "basicBotRight4" at drawBotX,14
-		
-		drawBotX++
-		draw "basicBotRight1" at drawBotX,12
-		draw "basicBotRight3" at drawBotX,13
-		draw "basicBotRight5" at drawBotX,14
-		
-	elseif basicBot1Face=="Left" then
-		
-		draw "basicBotLeft0" at drawBotX,12
-		draw "basicBotLeft2" at drawBotX,13
-		draw "basicBotLeft4" at drawBotX,14
-		
-		drawBotX++
-		draw "basicBotLeft1" at drawBotX,12
-		draw "basicBotLeft3" at drawBotX,13
-		draw "basicBotLeft5" at drawBotX,14
-	end
-end'''
-    print(code.replace("Bot1", "Bot2"))
+    word_to_be_replaced = input("Input word to be replaced: ")
+    word_to_replace = input("Input word to replace: ")
+    print("Paste code, then CTRL + D to input.")
+    code = sys.stdin.readlines()
+    print("\nResult:\n")
+    print(''.join(code).replace(word_to_be_replaced, word_to_replace))
 
 
 def swap_building():  # 4
