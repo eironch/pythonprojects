@@ -7,7 +7,7 @@ def main():
     for x in range(len(name)):
         append_random_char("cheiron", output, random.randint(0, len(name) - 1))
 
-    print(output)
+    print("".join(output))
 
 def append_random_char(name, output, rand_num):
     if name[rand_num] not in output:
