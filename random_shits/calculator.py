@@ -1,5 +1,7 @@
 from tkinter import *
+from PIL import ImageTk,Image
 import re
+
 def main():
     root = Tk()
 
@@ -8,6 +10,10 @@ def main():
     button_height = 3
     button_grid_padx = 2
     button_grid_pady = 2
+
+    # images
+    root.iconbitmap('calculator.ico')
+    img = ImageTk.PhotoImage(Image.open('calculator.png').resize((50,50), Image.LANCZOS))
 
     # texts
     root.title("The Calculator")
@@ -88,10 +94,6 @@ def main():
             result = second_number * f_num
         elif operation == "division":
             result = f_num / second_number
-
-            if f_num * second_number == 0:
-                print(f_num * second_number)
-                result = int(result)
         else:
             return
 
@@ -123,34 +125,37 @@ def main():
 
     button_equal = Button(root, text="=", width=button_width * 4 + 6, height=button_height, command=button_equal)
 
+    button_quit = Button(root, text="Quit", activebackground="light gray", relief="flat", overrelief="solid", bd=0, width=5, height=1, command=root.quit)
+
     # draw
-    e.grid(row=0, column=0, columnspan=4, padx = 10, pady = 10)
+    e.grid(row=1, column=0, columnspan=4, padx = 10, pady = 10)
 
-    button_1.grid(row=4, column=0, padx=button_grid_padx, pady=button_grid_pady)
-    button_2.grid(row=4, column=1, padx=button_grid_padx, pady=button_grid_pady)
-    button_3.grid(row=4, column=2, padx=button_grid_padx, pady=button_grid_pady)
+    button_1.grid(row=5, column=0, padx=button_grid_padx, pady=button_grid_pady)
+    button_2.grid(row=5, column=1, padx=button_grid_padx, pady=button_grid_pady)
+    button_3.grid(row=5, column=2, padx=button_grid_padx, pady=button_grid_pady)
 
-    button_4.grid(row=3, column=0, padx=button_grid_padx, pady=button_grid_pady)
-    button_5.grid(row=3, column=1, padx=button_grid_padx, pady=button_grid_pady)
-    button_6.grid(row=3, column=2, padx=button_grid_padx, pady=button_grid_pady)
+    button_4.grid(row=4, column=0, padx=button_grid_padx, pady=button_grid_pady)
+    button_5.grid(row=4, column=1, padx=button_grid_padx, pady=button_grid_pady)
+    button_6.grid(row=4, column=2, padx=button_grid_padx, pady=button_grid_pady)
 
-    button_7.grid(row=2, column=0, padx=button_grid_padx, pady=button_grid_pady)
-    button_8.grid(row=2, column=1, padx=button_grid_padx, pady=button_grid_pady)
-    button_9.grid(row=2, column=2, padx=button_grid_padx, pady=button_grid_pady)
+    button_7.grid(row=3, column=0, padx=button_grid_padx, pady=button_grid_pady)
+    button_8.grid(row=3, column=1, padx=button_grid_padx, pady=button_grid_pady)
+    button_9.grid(row=3, column=2, padx=button_grid_padx, pady=button_grid_pady)
 
-    button_0.grid(row=5, column=1, padx=button_grid_padx, pady=button_grid_pady)
+    button_0.grid(row=6, column=1, padx=button_grid_padx, pady=button_grid_pady)
 
-    button_clear.grid(row=1, column=2, columnspan=2, padx=button_grid_padx, pady=button_grid_pady)
-    button_all_clear.grid(row=1, column=0, columnspan=2, padx=button_grid_padx, pady=button_grid_pady)
+    button_clear.grid(row=2, column=2, columnspan=2, padx=button_grid_padx, pady=button_grid_pady)
+    button_all_clear.grid(row=2, column=0, columnspan=2, padx=button_grid_padx, pady=button_grid_pady)
 
-    button_divide.grid(row=2, column=3, padx=button_grid_padx, pady=button_grid_pady)
-    button_multiply.grid(row=3, column=3, padx=button_grid_padx, pady=button_grid_pady)
-    button_subtract.grid(row=4, column=3, padx=button_grid_padx, pady=button_grid_pady)
-    button_add.grid(row=5, column=3, padx=button_grid_padx, pady=button_grid_pady)
+    button_divide.grid(row=3, column=3, padx=button_grid_padx, pady=button_grid_pady)
+    button_multiply.grid(row=4, column=3, padx=button_grid_padx, pady=button_grid_pady)
+    button_subtract.grid(row=5, column=3, padx=button_grid_padx, pady=button_grid_pady)
+    button_add.grid(row=6, column=3, padx=button_grid_padx, pady=button_grid_pady)
 
-    button_equal.grid(row=6, column=0, columnspan=4, padx=button_grid_padx, pady=button_grid_pady)
+    button_equal.grid(row=7, column=0, columnspan=4, padx=button_grid_padx, pady=button_grid_pady)
 
-    # loop
+    button_quit.grid(row=0, column=0, padx=button_grid_padx, pady=button_grid_pady)
+
     root.mainloop()
 
 if __name__ == "__main__":
