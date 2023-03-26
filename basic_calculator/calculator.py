@@ -13,7 +13,7 @@ def main():
 
     # images
     root.iconbitmap('calculator.ico')
-    img = ImageTk.PhotoImage(Image.open('calculator.png').resize((50,50), Image.LANCZOS))
+    img = ImageTk.PhotoImage(Image.open('calculator.png').resize((50, 50), Image.LANCZOS))
 
     # texts
     root.title("The Calculator")
