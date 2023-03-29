@@ -24,35 +24,46 @@ def main():
     image_list = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12]
 
     global label
+    global status
 
-    label = Label(image=image_list[image_index])
+    status = Label(root, text="Image "  + str(image_index + 1) + " of " + str(len(image_list)), bd=1, relief=SUNKEN, anchor=E)
+    label = Label(root, image=image_list[image_index])
     label.grid(row=0, column=0, columnspan=3)
+    status.grid(row=2, column=0, columnspan=3, sticky=W+E)
 
     def button_backwards(len):
         global image_index
         global label
+        global status
 
         if image_index != 0:
             image_index -= 1
         else:
-            image_index = len
+            image_index = len - 1
 
+        status.grid_forget()
         label.grid_forget()
-        label = Label(image=image_list[image_index - 1])
+        status = Label(root, text="Image " + str(image_index + 1)+ " of " + str(len), bd=1, relief=SUNKEN, anchor=E)
+        label = Label(image=image_list[image_index])
         label.grid(row=0, column=0, columnspan=3)
+        status.grid(row=2, column=0, columnspan=3, sticky=W+E)
 
     def button_forwards(len):
         global image_index
         global label
+        global status
 
-        if image_index != len:
+        if image_index != len - 1:
             image_index += 1
         else:
             image_index = 0
 
+        status.grid_forget()
         label.grid_forget()
-        label = Label(image=image_list[image_index - 1])
+        status = Label(root, text="Image " + str(image_index + 1) + " of " + str(len), bd=1, relief=SUNKEN, anchor=E)
+        label = Label(image=image_list[image_index])
         label.grid(row=0, column=0, columnspan=3)
+        status.grid(row=2, column=0, columnspan=3, sticky=W+E)
 
     button_back = Button(root, text="<<", command=lambda: button_backwards(len(image_list)))
     button_quit = Button(root, text="Quit", command=root.quit)
@@ -60,7 +71,7 @@ def main():
 
     button_back.grid(row=1, column=0)
     button_quit.grid(row=1, column=1)
-    button_forward.grid(row=1, column=2)
+    button_forward.grid(row=1, column=2, pady=10)
 
     root.mainloop()
 
