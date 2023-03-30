@@ -26,29 +26,25 @@ def main():
 
 
 def tile_operation():  # 1
+    roomY = 0
+
     for x in range(25):
-        for y in range(15):
-            print(f'\non tilex{x}y{y} do')
-            for room in range(5):
-                if room == 0:
-                    print(f'  if checkRoom == {room} then')
-                else:
-                    print(f'  elseif checkRoom == {room} then')
-                print(f'    if tileOperation == "save" then')
-                print(f'      tilex{x}y{y}room{room} = tileNameSave')
-                print(f'    elseif tileOperation == "swap" then')
-                print(f'      if tileNameSwap != tilex{x}y{y}room{room} then')
-                print(f'        tell {x},{y} to')
-                print(f'          swap tilex{x}y{y}room{room}')
-                print(f'        end')
-                print(f'      end')
-                print(f'    elseif tileOperation == "check" then')
-                print(f'      tileNameCheck = tilex{x}y{y}room{room}')
-                print(f'    end')
-
-            print(f'  end')
+        for y in range(8):
+            for roomX in range(7):
+                for roomY in range(7):
+                    print(f'\non tilex{x}y{y}roomX{roomX}roomY{roomY} do')
+                    print(f'  if tileOperation == "save" then')
+                    print(f'    tilex{x}y{y}room{roomX}{roomY} = tileNameSave')
+                    print(f'  elseif tileOperation == "check" then')
+                    print(f'    tileNameCheck = tilex{x}y{y}room{roomX}{roomY}')
+                    print(f'  elseif tileOperation == "swap" then')
+                    print(f'    if tileNameSwap != tilex{x}y{y}room{roomX}{roomY} then')
+                    print(f'      tell {x},{y} to')
+                    print(f'        swap tilex{x}y{y}room{roomX}{roomY}')
+                    print(f'      end')
+                    print(f'    end')
+                    print(f'  end')
             print(f'end')
-
 
 def update_tiles():  # 2
     start_x = 8

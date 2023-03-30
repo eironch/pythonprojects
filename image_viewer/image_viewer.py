@@ -41,6 +41,7 @@ def main():
         else:
             image_index = len - 1
 
+        # updates the image and status bar
         status.grid_forget()
         label.grid_forget()
         status = Label(root, text="Image " + str(image_index + 1)+ " of " + str(len), bd=1, relief=SUNKEN, anchor=E)
@@ -58,6 +59,7 @@ def main():
         else:
             image_index = 0
 
+        # updates the image and status bar
         status.grid_forget()
         label.grid_forget()
         status = Label(root, text="Image " + str(image_index + 1) + " of " + str(len), bd=1, relief=SUNKEN, anchor=E)
