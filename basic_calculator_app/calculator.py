@@ -18,7 +18,11 @@ def main():
     # texts
     root.title("The Calculator")
 
-    e = Entry(root, width=45, borderwidth=5, justify="right")
+    # its much better to use pack for root then put frames all of it, as if it was html
+    frame = LabelFrame(root, padx=10, pady=10, borderwidth=3)
+    frame.grid(row=1, column=0, columnspan=4, pady=10)
+
+    e = Entry(frame, width=45, borderwidth=5, justify="right")
     e.insert(0, 0)
 
     # functions
@@ -125,7 +129,7 @@ def main():
 
     button_equal = Button(root, text="=", width=button_width * 4 + 6, height=button_height, command=button_equal)
 
-    button_quit = Button(root, text="Quit", activebackground="light gray", relief="flat", overrelief="solid", bd=0, width=5, height=1, command=root.quit)
+    #button_quit = Button(root, text="Quit", activebackground="light gray", relief="flat", overrelief="solid", bd=0, width=5, height=1, command=root.quit)
 
     # draw
     e.grid(row=1, column=0, columnspan=4, padx = 10, pady = 10)
@@ -154,7 +158,7 @@ def main():
 
     button_equal.grid(row=7, column=0, columnspan=4, padx=button_grid_padx, pady=button_grid_pady)
 
-    button_quit.grid(row=0, column=0, padx=button_grid_padx, pady=button_grid_pady)
+    #button_quit.grid(row=0, column=0, padx=button_grid_padx, pady=button_grid_pady)
 
     root.mainloop()
 
