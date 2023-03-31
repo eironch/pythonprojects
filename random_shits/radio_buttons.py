@@ -6,8 +6,6 @@ def main():
 
     root.title('Radio Buttons')
 
-
-
     def clicked(value):
         label = Label(root, text=value).pack()
 
@@ -25,7 +23,6 @@ def main():
         Radiobutton(root, text=text, variable=pizza, value=topping).pack(anchor=W)
 
     button = Button(root, text="Choose!", command=lambda: clicked(pizza.get())).pack()
-
 
     mainloop()
 
