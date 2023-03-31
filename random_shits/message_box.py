@@ -15,7 +15,6 @@ def main():
         else:
             messagebox.showinfo("Message Box", "I like you too!")
 
-
     popup()
     quit()
     mainloop()
