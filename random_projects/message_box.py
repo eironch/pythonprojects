@@ -5,7 +5,7 @@ from tkinter import messagebox
 def main():
     root = Tk()
 
-    root.title('Messag Boxes')
+    root.title('Message Boxes')
 
     # showinfo, showwarning, showerror, askquestion, askokcancel, askyesno
     def popup():
