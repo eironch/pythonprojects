@@ -1,10 +1,6 @@
 def main():
     def draw_code(name, width, height, variable_name):
-        name = input("Input Sprite Name: ")
-        width = int(input("Input Width: "))
-        height = int(input("Input Height: "))
-        variable_name = input("Input Variable Name: ")
-        startingHeight = 7 - height
+        startingHeight = 6 - height
         frameCount = 0
 
         print("\nResult: \n")
@@ -27,9 +23,6 @@ def main():
         print('end')
 
     def swap_code():
-        name = input("Input Sprite Name: ")
-        width = int(input("Input Width: "))
-        height = int(input("Input Height: "))
         startingHeight = 7 - height
         frameCount = 0
 
@@ -59,9 +52,15 @@ def main():
     build_code = input("Input Code to Build: ")
 
     if build_code == "1":
-        draw_code()
+        draw_code(input("Input Sprite Name: "),
+                  int(input("Input Width: ")),
+                  int(input("Input Height: ")),
+                  input("Input Variable Name: "))
     elif build_code == "2":
-        swap_code()
+        swap_code(input("Input Sprite Name: "),
+                  int(input("Input Width: ")),
+                  int(input("Input Height: ")),
+                  input("Input Variable Name: "))
 
 
 
