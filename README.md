@@ -14,12 +14,13 @@ The following projects are included in this repository:
 4.  **Image Viewer App**: A simple image viewer that can scroll through images.
 
 5. **Simple Database**: An app that records the given information to a database.  
-4. **Magic Print**: Spells the input word/phrase/sentence.
 
-5. **Name Randomizer**: Randomizes letter position of a name.
+6. **Magic Print**: Spells the input word/phrase/sentence.
 
-6. **Moving Name**: Moves the letter position of a name to the right.
+7. **Name Randomizer**: Randomizes letter position of a name.
 
-7. **Pulp Auto Script**: An auto script to hasten coding in pulp script language.
+8. **Moving Name**: Moves the letter position of a name to the right.
+
+9. **Pulp Auto Script**: An auto script to hasten coding in pulp script language.
 
 
