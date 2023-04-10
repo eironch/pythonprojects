@@ -10,28 +10,6 @@ def main():
     weekday = 0
     weekday_label_width = 10
 
-    header = Label(root, text="Just a Calendar", font=("Helvetica", 20, "bold"))
-    header.grid(row=0, column=0, columnspan=7, padx= 30, pady=(30,10))
-
-    month_label = Label(root, text="April", font=("Helvetica", 20))
-    month_label.grid(row=1, column=0, columnspan=7, padx= 30, pady=30)
-
-    weekday_label_row = 2
-    sunday_label = Label(root, text="Sunday", width=weekday_label_width)
-    sunday_label.grid(row=weekday_label_row, column=0)
-    monday_label = Label(root, text="Monday", width=weekday_label_width)
-    monday_label.grid(row=weekday_label_row, column=1)
-    tuesday_label = Label(root, text="Tueday", width=weekday_label_width)
-    tuesday_label.grid(row=weekday_label_row, column=2)
-    wednesday_label = Label(root, text="Wednesday", width=weekday_label_width)
-    wednesday_label.grid(row=weekday_label_row, column=3)
-    thursday_label = Label(root, text="Thursday", width=weekday_label_width)
-    thursday_label.grid(row=weekday_label_row, column=4)
-    friday_label = Label(root, text="Friday", width=weekday_label_width)
-    friday_label.grid(row=weekday_label_row, column=5)
-    saturday_label = Label(root, text="Saturday", width=weekday_label_width)
-    saturday_label.grid(row=weekday_label_row, column=6)
-
     def find_month_key(month):
         match month:
             case 1:
@@ -58,6 +36,33 @@ def main():
                 return 4
             case 12:
                 return 6
+    def find_month_name(month):
+        match month:
+            case 1:
+                return "January"
+            case 2:
+                return "February"
+            case 3:
+                return "March"
+            case 4:
+                return "April"
+            case 5:
+                return "May"
+            case 6:
+                return "June"
+            case 7:
+                return "July"
+            case 8:
+                return "August"
+            case 9:
+                return "September"
+            case 10:
+                return "October"
+            case 11:
+                return "November"
+            case 12:
+                return "December"
+
     year = 23
     month = 1
 
@@ -76,6 +81,29 @@ def main():
         if weekday % 7 == 0:
             week += 1
             weekday = 0
+
+    header = Label(root, text="Just a Calendar", font=("Helvetica", 20, "bold"))
+    header.grid(row=0, column=0, columnspan=7, padx=30, pady=(30, 10))
+
+    month_name = find_month_name(month)
+    month_label = Label(root, text=month_name, font=("Helvetica", 20))
+    month_label.grid(row=1, column=0, columnspan=7, padx=30, pady=30)
+
+    weekday_label_row = 2
+    sunday_label = Label(root, text="Sunday", width=weekday_label_width)
+    sunday_label.grid(row=weekday_label_row, column=0)
+    monday_label = Label(root, text="Monday", width=weekday_label_width)
+    monday_label.grid(row=weekday_label_row, column=1)
+    tuesday_label = Label(root, text="Tueday", width=weekday_label_width)
+    tuesday_label.grid(row=weekday_label_row, column=2)
+    wednesday_label = Label(root, text="Wednesday", width=weekday_label_width)
+    wednesday_label.grid(row=weekday_label_row, column=3)
+    thursday_label = Label(root, text="Thursday", width=weekday_label_width)
+    thursday_label.grid(row=weekday_label_row, column=4)
+    friday_label = Label(root, text="Friday", width=weekday_label_width)
+    friday_label.grid(row=weekday_label_row, column=5)
+    saturday_label = Label(root, text="Saturday", width=weekday_label_width)
+    saturday_label.grid(row=weekday_label_row, column=6)
 
     root.mainloop()
 
