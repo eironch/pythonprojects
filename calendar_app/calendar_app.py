@@ -9,6 +9,8 @@ def main():
     week = 0
     weekday = 0
     weekday_label_width = 10
+    year = 23
+    month = 4
 
     def find_month_key(month):
         match month:
@@ -63,10 +65,7 @@ def main():
             case 12:
                 return "December"
 
-    year = 23
-    month = 1
-
-    weekday = ((year + math.floor(year/4) + 2 + find_month_key(month) - 1) % 7) - 1
+    weekday = ((year + math.floor(year / 4) + 2 + find_month_key(month) - 1) % 7) - 1
 
     if weekday != 0:
         weekday -= 1
@@ -74,7 +73,6 @@ def main():
         weekday = 6
 
     for days in range(1, 32):
-
         Label(root, text=days).grid(row=week+3, column=weekday, pady=30)
         weekday += 1
 
