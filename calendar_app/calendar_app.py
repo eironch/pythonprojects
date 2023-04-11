@@ -3,7 +3,7 @@ from tkcalendar import Calendar
 from PIL import ImageTk,Image
 import math
 
-def find_month_key(month):
+def find_month_key():
     match month:
         case 1:
             return 1
@@ -30,7 +30,7 @@ def find_month_key(month):
         case 12:
             return 6
 
-def find_month_name(month):
+def find_month_name():
     match month:
         case 1:
             return "January"
@@ -57,9 +57,38 @@ def find_month_name(month):
         case 12:
             return "December"
 
+def find_days_in_month():
+    match month:
+        case 1:
+            return 31
+        case 2:
+            return 28
+        case 3:
+            return 31
+        case 4:
+            return 30
+        case 5:
+            return 31
+        case 6:
+            return 30
+        case 7:
+            return 31
+        case 8:
+            return 31
+        case 9:
+            return 30
+        case 10:
+            return 31
+        case 11:
+            return 30
+        case 12:
+            return 31
+
 def previous_month():
     global month
     global year
+
+    destroy_calendar()
 
     if month != 1:
         month -= 1
@@ -67,12 +96,13 @@ def previous_month():
         year -= 1
         month = 12
 
-    destroy_calendar()
     create_calendar()
 
 def next_month():
     global month
     global year
+
+    destroy_calendar()
 
     if month != 12:
         month += 1
@@ -80,14 +110,13 @@ def next_month():
         year += 1
         month = 1
 
-    destroy_calendar()
     create_calendar()
 
 def destroy_calendar():
     week = 0
     weekday = 0
 
-    weekday = ((year + math.floor(year / 4) + 2 + find_month_key(month) - 1) % 7)
+    weekday = ((year + math.floor(year / 4) + 2 + find_month_key() - 1) % 7)
 
     # compensates for starting in day 2
     if weekday != 0:
@@ -101,7 +130,7 @@ def destroy_calendar():
     else:
         weekday = 6
 
-    for days in range(1, 32):
+    for days in range(1, find_days_in_month() + 1):
         globals()["day_" + str(days)].destroy()
 
         weekday += 1
@@ -114,7 +143,7 @@ def create_calendar():
     week = 0
     weekday = 0
 
-    weekday = ((year + math.floor(year / 4) + 2 + find_month_key(month) - 1) % 7)
+    weekday = ((year + math.floor(year / 4) + 2 + find_month_key() - 1) % 7)
 
     # compensates for starting in day 2
     if weekday != 0:
@@ -128,7 +157,7 @@ def create_calendar():
     else:
         weekday = 6
 
-    for days in range(1, 32):
+    for days in range(1, find_days_in_month() + 1):
         globals()["day_" + str(days)] = Label(root, text=days)
         globals()["day_" + str(days)].grid(row=week + 3, column=weekday, pady=30)
 
@@ -138,7 +167,7 @@ def create_calendar():
             week += 1
             weekday = 0
 
-    month_name = find_month_name(month)
+    month_name = find_month_name()
     month_label.configure(text=month_name, font=("Helvetica", 20))
     year_label2.configure(text=year, font=("Helvetica", 20))
 
