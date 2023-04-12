@@ -1,7 +1,7 @@
 from tkinter import *
-from tkcalendar import Calendar
-from PIL import ImageTk, Image
+import datetime
 import math
+
 
 
 def find_month_key():
@@ -129,8 +129,6 @@ def next_month():
 
 def destroy_calendar():
     week = 0
-    weekday = 0
-
     weekday = ((year + math.floor(year / 4) + 2 + find_month_key() - 1) % 7)
 
     # compensates for starting in day 2
@@ -157,8 +155,6 @@ def destroy_calendar():
 
 def create_calendar():
     week = 0
-    weekday = 0
-
     weekday = ((year + math.floor(year / 4) + 2 + find_month_key() - 1) % 7)
 
     # compensates for starting in day 2
@@ -195,9 +191,9 @@ def main():
 
     global year
     global month
-    year = 23
-    month = 7
-    weekday_label_width = 10
+    current_date = datetime.datetime.now()
+    year = int(current_date.strftime("%y"))
+    month = int(current_date.strftime("%m"))
 
     # app title label
     header = Label(root, text="Just a Calendar", font=("Helvetica", 20, "bold"))
@@ -217,6 +213,7 @@ def main():
 
     # weekday labels
     weekday_label_row = 2
+    weekday_label_width = 10
     sunday_label = Label(root, text="Sunday", width=weekday_label_width)
     sunday_label.grid(row=weekday_label_row, column=0)
     monday_label = Label(root, text="Monday", width=weekday_label_width)
