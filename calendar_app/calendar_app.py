@@ -213,7 +213,7 @@ def main():
 
     # weekday labels
     weekday_label_row = 2
-    weekday_label_width = 10
+    weekday_label_width = 1
     sunday_label = Label(root, text="Sunday", width=weekday_label_width)
     sunday_label.grid(row=weekday_label_row, column=0)
     monday_label = Label(root, text="Monday", width=weekday_label_width)
