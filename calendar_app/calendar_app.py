@@ -1,14 +1,21 @@
 from tkinter import *
 from tkcalendar import Calendar
-from PIL import ImageTk,Image
+from PIL import ImageTk, Image
 import math
+
 
 def find_month_key():
     match month:
         case 1:
-            return 1
+            if year % 4 != 0:
+                return 1
+            else:
+                return 0
         case 2:
-            return 4
+            if year % 4 != 0:
+                return 4
+            else:
+                return 3
         case 3:
             return 4
         case 4:
@@ -29,6 +36,7 @@ def find_month_key():
             return 4
         case 12:
             return 6
+
 
 def find_month_name():
     match month:
@@ -57,12 +65,16 @@ def find_month_name():
         case 12:
             return "December"
 
+
 def find_days_in_month():
     match month:
         case 1:
             return 31
         case 2:
-            return 28
+            if year % 4 != 0:
+                return 28
+            else:
+                return 29
         case 3:
             return 31
         case 4:
@@ -84,6 +96,7 @@ def find_days_in_month():
         case 12:
             return 31
 
+
 def previous_month():
     global month
     global year
@@ -98,6 +111,7 @@ def previous_month():
 
     create_calendar()
 
+
 def next_month():
     global month
     global year
@@ -111,6 +125,7 @@ def next_month():
         month = 1
 
     create_calendar()
+
 
 def destroy_calendar():
     week = 0
@@ -138,6 +153,7 @@ def destroy_calendar():
         if weekday % 7 == 0:
             week += 1
             weekday = 0
+
 
 def create_calendar():
     week = 0
@@ -170,6 +186,7 @@ def create_calendar():
     month_name = find_month_name()
     month_label.configure(text=month_name, font=("Helvetica", 20))
     year_label2.configure(text=year, font=("Helvetica", 20))
+
 
 def main():
     global root
