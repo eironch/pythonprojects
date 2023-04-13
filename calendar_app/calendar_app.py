@@ -168,12 +168,12 @@ def create_calendar():
     else:
         weekday = 6
 
-    for days in range(1, find_days_in_month() + 1):
-        globals()["day_" + str(days)] = Label(root, text=days, width=10, height=5)
-        globals()["day_" + str(days)].grid(row=week + 3, column=weekday)
+    for day in range(1, find_days_in_month() + 1):
+        globals()["day_" + str(day)] = Label(root, text=day, width=10, height=5)
+        globals()["day_" + str(day)].grid(row=week + 3, column=weekday)
 
-        if day == days:
-            globals()["day_" + str(days)].configure(bg="light gray")
+        if current_day == day and current_month == month and current_year == year :
+            globals()["day_" + str(day)].configure(bg="light gray")
 
         weekday += 1
 
@@ -193,11 +193,16 @@ def main():
 
     global year
     global month
-    global day
+    global current_date
+    global current_day
+    global current_month
+    global current_year
     current_date = datetime.datetime.now()
+    current_day = int(current_date.strftime("%d"))
+    current_month = int(current_date.strftime("%m"))
+    current_year = int(current_date.strftime("%y"))
     year = int(current_date.strftime("%y"))
     month = int(current_date.strftime("%m"))
-    day = int(current_date.strftime("%d"))
 
     # app title label
     header = Label(root, text="Just a Calendar", font=("Helvetica", 20, "bold"))
