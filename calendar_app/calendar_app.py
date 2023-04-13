@@ -3,7 +3,6 @@ import datetime
 import math
 
 
-
 def find_month_key():
     match month:
         case 1:
@@ -170,8 +169,11 @@ def create_calendar():
         weekday = 6
 
     for days in range(1, find_days_in_month() + 1):
-        globals()["day_" + str(days)] = Label(root, text=days)
-        globals()["day_" + str(days)].grid(row=week + 3, column=weekday, pady=30)
+        globals()["day_" + str(days)] = Label(root, text=days, width=10, height=5)
+        globals()["day_" + str(days)].grid(row=week + 3, column=weekday)
+
+        if day == days:
+            globals()["day_" + str(days)].configure(bg="light gray")
 
         weekday += 1
 
@@ -191,9 +193,11 @@ def main():
 
     global year
     global month
+    global day
     current_date = datetime.datetime.now()
     year = int(current_date.strftime("%y"))
     month = int(current_date.strftime("%m"))
+    day = int(current_date.strftime("%d"))
 
     # app title label
     header = Label(root, text="Just a Calendar", font=("Helvetica", 20, "bold"))
@@ -213,20 +217,21 @@ def main():
 
     # weekday labels
     weekday_label_row = 2
-    weekday_label_width = 1
-    sunday_label = Label(root, text="Sunday", width=weekday_label_width)
+    global label_width
+    label_width = 10
+    sunday_label = Label(root, text="Sunday", width=label_width)
     sunday_label.grid(row=weekday_label_row, column=0)
-    monday_label = Label(root, text="Monday", width=weekday_label_width)
+    monday_label = Label(root, text="Monday", width=label_width)
     monday_label.grid(row=weekday_label_row, column=1)
-    tuesday_label = Label(root, text="Tuesday", width=weekday_label_width)
+    tuesday_label = Label(root, text="Tuesday", width=label_width)
     tuesday_label.grid(row=weekday_label_row, column=2)
-    wednesday_label = Label(root, text="Wednesday", width=weekday_label_width)
+    wednesday_label = Label(root, text="Wednesday", width=label_width)
     wednesday_label.grid(row=weekday_label_row, column=3)
-    thursday_label = Label(root, text="Thursday", width=weekday_label_width)
+    thursday_label = Label(root, text="Thursday", width=label_width)
     thursday_label.grid(row=weekday_label_row, column=4)
-    friday_label = Label(root, text="Friday", width=weekday_label_width)
+    friday_label = Label(root, text="Friday", width=label_width)
     friday_label.grid(row=weekday_label_row, column=5)
-    saturday_label = Label(root, text="Saturday", width=weekday_label_width)
+    saturday_label = Label(root, text="Saturday", width=label_width)
     saturday_label.grid(row=weekday_label_row, column=6)
 
     # control buttons
