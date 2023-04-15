@@ -2,30 +2,28 @@ from tkinter import *
 from PIL import ImageTk,Image
 import sqlite3
 
-def main():
+def create_table(cursor):
+    try:
+        cursor.execute("""CREATE TABLE addresses (
+                first_name text,
+                last_name text,
+                address text,
+                city text,
+                province text,
+                zipcode integer
+            )
+        """)
+
+    except:
+        return
+
+def database():
     root = Tk()
     root.title('Database')
 
-    # Create a database or connect to one
-    conn = sqlite3.connect('address_book.db')
-
-    # Create cursor
-    cursor = conn.cursor()
-
-    # Create table
-    # cursor.execute("""CREATE TABLE addresses (
-    #         first_name text,
-    #         last_name text,
-    #         address text,
-    #         city text,
-    #         province text,
-    #         zipcode integer
-    #     )
-    # """)
-
     # Create text boxes
     e_f_name = Entry(root, width=30)
-    e_f_name.grid(row=0, column=1, padx=20, pady=(10,0))
+    e_f_name.grid(row=0, column=1, padx=20, pady=(10, 0))
     e_l_name = Entry(root, width=30)
     e_l_name.grid(row=1, column=1, padx=20)
     e_address = Entry(root, width=30)
@@ -41,7 +39,7 @@ def main():
 
     # Create text box labels
     f_name_label = Label(root, text="First Name: ")
-    f_name_label.grid(row=0, column=0, pady=(10,0))
+    f_name_label.grid(row=0, column=0, pady=(10, 0))
     l_name_label = Label(root, text="Last Name: ")
     l_name_label.grid(row=1, column=0)
     address_label = Label(root, text="Address: ")
@@ -84,15 +82,15 @@ def main():
 
         # Insert into database table
         cursor.execute("INSERT INTO addresses VALUES (:f_name, :l_name, :address, :city, :province, :zipcode)",
-                  {
-                      'f_name': e_f_name.get(),
-                      'l_name': e_l_name.get(),
-                      'address': e_address.get(),
-                      'city': e_city.get(),
-                      'province': e_province.get(),
-                      'zipcode': e_zipcode.get()
-                  }
-                  )
+                       {
+                           'f_name': e_f_name.get(),
+                           'l_name': e_l_name.get(),
+                           'address': e_address.get(),
+                           'city': e_city.get(),
+                           'province': e_province.get(),
+                           'zipcode': e_zipcode.get()
+                       }
+                       )
 
         # Commit changes
         conn.commit()
@@ -157,15 +155,15 @@ def main():
         # Create cursor
         cursor = conn.cursor()
         cursor.execute("""UPDATE addresses SET
-            first_name = :f_name,
-            last_name = :l_name,
-            address = :address,
-            city = :city,
-            province = :province,
-            zipcode = :zipcode
+                   first_name = :f_name,
+                   last_name = :l_name,
+                   address = :address,
+                   city = :city,
+                   province = :province,
+                   zipcode = :zipcode
 
-            WHERE oid = :oid
-            """,
+                   WHERE oid = :oid
+                   """,
                        {
                            'f_name': e_f_name_editor.get(),
                            'l_name': e_l_name_editor.get(),
@@ -273,7 +271,7 @@ def main():
     query_btn.grid(row=7, column=0, columnspan=2, padx=10, pady=10)
 
     # Create a update button
-    edit_btn = Button(root, text="Edit Record", width=50, command= lambda: edit(e_select.get()))
+    edit_btn = Button(root, text="Edit Record", width=50, command=lambda: edit(e_select.get()))
     edit_btn.grid(row=9, column=0, columnspan=2, padx=10, pady=10)
 
     # Create a delete button
@@ -281,7 +279,17 @@ def main():
     delete_btn = Button(root, text="Delete Record", width=50, command=delete)
     delete_btn.grid(row=10, column=0, columnspan=2, padx=10, pady=10)
 
+def main():
 
+
+    # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    cursor = conn.cursor()
+
+    create_table(cursor)
+    database()
 
     # Commit changes
     conn.commit()
