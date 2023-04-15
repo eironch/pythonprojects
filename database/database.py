@@ -17,10 +17,7 @@ def create_table(cursor):
     except:
         return
 
-def database():
-    root = Tk()
-    root.title('Database')
-
+def database(root):
     # Create text boxes
     e_f_name = Entry(root, width=30)
     e_f_name.grid(row=0, column=1, padx=20, pady=(10, 0))
@@ -280,7 +277,7 @@ def database():
     delete_btn.grid(row=10, column=0, columnspan=2, padx=10, pady=10)
 
 def main():
-
+    root = Tk()
 
     # Create a database or connect to one
     conn = sqlite3.connect('address_book.db')
@@ -289,7 +286,7 @@ def main():
     cursor = conn.cursor()
 
     create_table(cursor)
-    database()
+    database(root)
 
     # Commit changes
     conn.commit()
