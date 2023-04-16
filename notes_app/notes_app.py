@@ -1,14 +1,58 @@
 from tkinter import *
+import sqlite3
 
-def note_taking(root):
+def create_table(cursor):
+    try:
+        cursor.execute("""CREATE TABLE notebook (
+                notes text
+            )
+        """)
+    except:
+        return
+def query_table(cursor):
+    return
+
+def note_taking(root, records):
     root.title('For Note Taking')
 
     def enter(*args):
-        print("yes")
+        conn = sqlite3.connect('note_book.db')
+        cursor = conn.cursor()
+
+        if root.focus_get() == e_note1:
+            get_entry = "e_note1"
+            record_id = 0
+        elif root.focus_get() == e_note2:
+            get_entry = "e_note2"
+            record_id = 1
+        elif root.focus_get() == e_note3:
+            get_entry = "e_note3"
+            record_id = 2
+        elif root.focus_get() == e_note4:
+            get_entry = "e_note4"
+            record_id = 3
+        else:
+            return
+
+        # just check if it contains anything then do update if not
+        cursor.execute("""INSERT INTO notebook (notes) VALUES(:note_submitted)
+  ON                      CONFLICT(notes) DO UPDATE SET phonenumber=:note_submitted""",
+                       {
+                           'note_submitted': globals()[get_entry].get()
+                       }
+                       )
+
+        cursor.execute("SELECT *, oid FROM notebook")
+        records = cursor.fetchall()
+        print(records)
+        return records
+
+        conn.commit()
+        conn.close()
         root.focus()
 
     header = Label(root, text="For Note Taking", font=("Helvetica", 20, "bold"))
-    header.grid(row=0, column=0, padx=30, pady=(30, 10), columnspan=10)
+    header.grid(row=0, column=0, padx=30, pady=30, columnspan=10)
 
     for x in range(1,5):
         globals()["note" + str(x)] = Label(root, text="Note " + str(x) + ": ", font=("Helvetica", 10, "bold"))
@@ -20,7 +64,17 @@ def note_taking(root):
 def main():
     root = Tk()
 
-    note_taking(root)
+    conn = sqlite3.connect('note_book.db')
+    cursor = conn.cursor()
+
+    create_table(cursor)
+    note_taking(root, query_table(cursor))
+
+
+    conn.commit()
+    conn.close()
+
+
     root.mainloop()
 
 if __name__ == "__main__":
