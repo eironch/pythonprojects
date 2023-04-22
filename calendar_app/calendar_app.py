@@ -131,10 +131,10 @@ def destroy_calendar():
     weekday = ((year + math.floor(year / 4) + 2 + find_month_key() - 1) % 7)
 
     # compensates for starting in day 2
-    if weekday != 0:
+    if weekday != 1:
         weekday -= 1
     else:
-        weekday = 6
+        weekday = 7
 
     # makes value start from base 0
     if weekday != 0:
