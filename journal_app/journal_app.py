@@ -92,7 +92,6 @@ def journal(root):
         else:
             weekday = 7
 
-    print(weekday)
     header = Label(root, text="Your Journal", font=("Helvetica", 20, "bold"))
     header.grid(row=0, column=0, columnspan=10, padx=30, pady=(30,10))
 
