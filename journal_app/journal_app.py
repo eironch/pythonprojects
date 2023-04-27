@@ -122,7 +122,7 @@ def create_calendar():
 
     for day in range(starting_day, starting_day + 7):
         globals()["day_" + str(day)] = Label(root, text=day, width=10, height=5)
-        globals()["day_" + str(day)].grid(row=week + 3, column=weekday)
+        globals()["day_" + str(day)].grid(row=week + 3, column=weekday + 2)
 
         if current_day == day and current_month == month and current_year == year :
             globals()["day_" + str(day)].configure(bg="light gray")
@@ -133,9 +133,8 @@ def create_calendar():
             week += 1
             weekday = 0
 
-    month_name = find_month_name()
-    month_label.configure(text=month_name, font=("Helvetica", 20))
-    year_label2.configure(text=year, font=("Helvetica", 20))
+    month_label.configure(text=find_month_name(), font=("Helvetica", 20))
+    year_label.configure(text="20" + str(year), font=("Helvetica", 20))
 
 def journal(root):
     root.title('Your Journal')
@@ -161,12 +160,10 @@ def journal(root):
 
     global month_label
     month_label = Label(root)
-    month_label.grid(row=1, column=0, columnspan=7, padx=30, pady=30)
-    year_label1 = Label(root, text="20", font=("Helvetica", 20))
-    year_label1.grid(row=1, column=0)
-    global year_label2
-    year_label2 = Label(root)
-    year_label2.grid(row=1, column=6)
+    month_label.grid(row=1, column=0, rowspan=3, padx=(30,0), pady=30)
+    global year_label
+    year_label = Label(root, text="20", font=("Helvetica", 20))
+    year_label.grid(row=1, column=1, rowspan=3, padx=(10,0))
 
     weekday_list = ["Sunday",
                     "Monday",
@@ -179,7 +176,7 @@ def journal(root):
 
     for x in range(7):
         globals()["weekday_" + str(x + 1)] = Label(root, text=weekday_list[x], font=("Helvetica", 10))
-        globals()["weekday_" + str(x + 1)].grid(row=2, column=x, padx=30)
+        globals()["weekday_" + str(x + 1)].grid(row=2, column=x + 2, padx=30)
 
     find_current_weekday()
 
