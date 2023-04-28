@@ -116,12 +116,39 @@ def find_days_in_month():
         case 12:
             return 31
 
+def check_month_character():
+    match current_month:
+        case 1:
+            return "0"
+        case 2:
+            return "0"
+        case 3:
+            return "0"
+        case 4:
+            return "0"
+        case 5:
+            return "0"
+        case 6:
+            return "0"
+        case 7:
+            return "0"
+        case 8:
+            return "0"
+        case 9:
+            return "0"
+        case 10:
+            return
+        case 11:
+            return
+        case 12:
+            return
+
 def create_calendar():
     week = 0
     weekday = 0
 
     for day in range(starting_day, starting_day + 7):
-        globals()["day_" + str(day)] = Label(root, text=day, width=10, height=5)
+        globals()["day_" + str(day)] = Label(root, text=check_month_character() + str(current_month)+ "."  + str(day), width=26, font=("Helvetica", 10))
         globals()["day_" + str(day)].grid(row=week + 3, column=weekday + 2)
 
         if current_day == day and current_month == month and current_year == year :
@@ -160,10 +187,16 @@ def journal(root):
 
     global month_label
     month_label = Label(root)
-    month_label.grid(row=1, column=0, rowspan=3, padx=(30,0), pady=30)
+    month_label.grid(row=1, column=0, rowspan=10, padx=(30,0), pady=30)
     global year_label
     year_label = Label(root, text="20", font=("Helvetica", 20))
-    year_label.grid(row=1, column=1, rowspan=3, padx=(10,0))
+    year_label.grid(row=1, column=1, rowspan=10, padx=(10,0))
+
+    for column in range(7):
+        for x in range(5):
+            globals()["note_" + str(x + 1)] = Entry(root, bd=0, width=30, insertwidth=1, font=("Helvetica", 10))
+            globals()["note_" + str(x + 1)].grid(row=x + 4, column=column+2, pady=2, padx=10)
+
 
     weekday_list = ["Sunday",
                     "Monday",
