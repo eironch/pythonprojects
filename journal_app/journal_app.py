@@ -149,7 +149,7 @@ def create_calendar():
 
     for day in range(starting_day, starting_day + 7):
         globals()["day_" + str(day)] = Label(root, text=check_month_character() + str(current_month)+ "."  + str(day), width=26, font=("Helvetica", 10))
-        globals()["day_" + str(day)].grid(row=week + 3, column=weekday + 2)
+        globals()["day_" + str(day)].grid(row=week + 3, column=weekday + 2, pady=2)
 
         if current_day == day and current_month == month and current_year == year :
             globals()["day_" + str(day)].configure(bg="light gray")
