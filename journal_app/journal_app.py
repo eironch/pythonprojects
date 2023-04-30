@@ -64,8 +64,10 @@ def find_month_name():
         case 12:
             return "December"
 
+
 def find_current_weekday():
     return
+
 
 def find_starting_day(weekday):
     global starting_day
@@ -85,6 +87,7 @@ def find_starting_day(weekday):
             starting_day -= 5
         case 7:
             starting_day -= 6
+
 
 def find_days_in_month():
     match month:
@@ -116,8 +119,9 @@ def find_days_in_month():
         case 12:
             return 31
 
-def check_month_character():
-    match current_month:
+
+def check_character(number):
+    match number:
         case 1:
             return "0"
         case 2:
@@ -136,22 +140,22 @@ def check_month_character():
             return "0"
         case 9:
             return "0"
-        case 10:
-            return
-        case 11:
-            return
-        case 12:
-            return
+        case _:
+            return ""
+
 
 def create_calendar():
     week = 0
     weekday = 0
 
     for day in range(starting_day, starting_day + 7):
-        globals()["day_" + str(day)] = Label(root, text=check_month_character() + str(current_month)+ "."  + str(day), width=26, font=("Helvetica", 10))
+        if day > find_days_in_month():
+            day -= find_days_in_month()
+        globals()["day_" + str(day)] = Label(root, text=check_character(current_month) + str(
+            current_month) + "." + check_character(day) + str(day), width=26, font=("Helvetica", 10))
         globals()["day_" + str(day)].grid(row=week + 3, column=weekday + 2, pady=2)
 
-        if current_day == day and current_month == month and current_year == year :
+        if current_day == day and current_month == month and current_year == year:
             globals()["day_" + str(day)].configure(bg="light gray")
 
         weekday += 1
@@ -162,6 +166,7 @@ def create_calendar():
 
     month_label.configure(text=find_month_name(), font=("Helvetica", 20))
     year_label.configure(text="20" + str(year), font=("Helvetica", 20))
+
 
 def journal(root):
     root.title('Your Journal')
@@ -187,16 +192,15 @@ def journal(root):
 
     global month_label
     month_label = Label(root)
-    month_label.grid(row=1, column=0, rowspan=10, padx=(30,0), pady=30)
+    month_label.grid(row=1, column=0, rowspan=10, padx=(30, 0), pady=30)
     global year_label
     year_label = Label(root, text="20", font=("Helvetica", 20))
-    year_label.grid(row=1, column=1, rowspan=10, padx=(10,0))
+    year_label.grid(row=1, column=1, rowspan=10, padx=(10, 0))
 
     for column in range(7):
         for x in range(5):
             globals()["note_" + str(x + 1)] = Entry(root, bd=0, width=30, insertwidth=1, font=("Helvetica", 10))
-            globals()["note_" + str(x + 1)].grid(row=x + 4, column=column+2, pady=2, padx=10)
-
+            globals()["note_" + str(x + 1)].grid(row=x + 4, column=column + 2, pady=2, padx=10)
 
     weekday_list = ["Sunday",
                     "Monday",
@@ -235,6 +239,7 @@ def main():
 
     journal(root)
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()
