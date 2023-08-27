@@ -5,7 +5,7 @@ def main():
     maxRange = int(input("Input Width: ")) * int(input("Input Height: "))
 
     if maxRange == "":
-        maxRange == 30
+        maxRange = 30
     else:
         maxRange = int(maxRange)
 
