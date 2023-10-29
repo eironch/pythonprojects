@@ -10,7 +10,7 @@ def main():
     enemy_name = input("Input Tile Name: ")
     enemy_count = int(input("Input Enemy Count: "))
     enemy_health = 1
-    pyautogui.PAUSE = 0.5
+
     for i in range(enemy_count * 4):
         pyautogui.click(1320, 210)
         pyautogui.hotkey("ctrlleft", "a")

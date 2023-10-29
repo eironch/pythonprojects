@@ -1,4 +1,4 @@
-import random
+import random_script
 
 def main():
     name = "cheiron"
