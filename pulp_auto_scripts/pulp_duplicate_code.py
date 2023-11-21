@@ -17,5 +17,6 @@ def main():
     print("\nCopied to Clipboard!")
     pyperclip.copy(result)
 
+
 if __name__ == "__main__":
     main()

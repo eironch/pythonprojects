@@ -2,56 +2,61 @@ import sys
 
 
 def main():
-    makerType = int(input("Input Room Maker Type: "))
-    makerPos = int(input("Input Room Maker Position Kind: "))
+    min_x = 0
+    min_y = 0
+    max_x = 0
+    max_y = 0
 
-    if makerType == 0:
-        if makerPos == 1:
+    maker_type = int(input("Input Room Maker Type: "))
+    maker_pos = int(input("Input Room Maker Position Kind: "))
+
+    if maker_type == 0:
+        if maker_pos == 1:
             min_x = 6
             min_y = 1
             max_x = 12
             max_y = 7
-        elif makerPos == 2:
+        elif maker_pos == 2:
             min_x = 12
             min_y = 1
             max_x = 18
             max_y = 7
-        elif makerPos == 3:
+        elif maker_pos == 3:
             min_x = 6
             min_y = 7
             max_x = 12
             max_y = 13
-        elif makerPos == 4:
+        elif maker_pos == 4:
             min_x = 12
             min_y = 7
             max_x = 18
             max_y = 13
 
-    elif makerType == 1:
-        if makerPos == 1:
+    elif maker_type == 1:
+        if maker_pos == 1:
             min_x = 6
             min_y = 1
             max_x = 18
             max_y = 7
-        elif makerPos == 2:
+        elif maker_pos == 2:
             min_x = 6
             min_y = 7
             max_x = 18
             max_y = 13
 
-    elif makerType == 2:
-        if makerPos == 1:
+    elif maker_type == 2:
+        if maker_pos == 1:
             min_x = 6
             min_y = 1
             max_x = 12
             max_y = 13
-        elif makerPos == 2:
+        elif maker_pos == 2:
             min_x = 12
             min_y = 1
             max_x = 18
             max_y = 13
 
-    elif makerType == 11:
+    elif maker_type == 11:
         min_x = int(input("Input Starting X Position: "))
         min_y = int(input("Input Starting Y Position: "))
         max_x = int(input("Input Max X Position: "))
