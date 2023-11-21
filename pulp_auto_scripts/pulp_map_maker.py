@@ -67,7 +67,7 @@ def main():
         check_start = ""
 
         if i + 3 < len(tile_name_list):
-            check_start = tile_name_list[i] + tile_name_list[i + 1] + tile_name_list[i + 2]
+            check_start = tile_name_list[i: i + 2] + tile_name_list[i + 1] + tile_name_list[i + 2]
 
         if check_start == "run":
             if tile != '':

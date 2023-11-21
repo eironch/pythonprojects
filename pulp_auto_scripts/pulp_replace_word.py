@@ -1,4 +1,5 @@
 import sys
+import pyperclip
 
 
 def main():
@@ -17,6 +18,8 @@ def main():
         code = code.replace(word_to_be_replaced_list[i], word_to_replace_list[i])
 
     print(code)
+    print("\nCopied to Clipboard!")
+    pyperclip.copy(code)
 
 
 if __name__ == "__main__":

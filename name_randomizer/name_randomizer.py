@@ -1,5 +1,3 @@
-import random_script
-
 def main():
     name = "cheiron"
     output = []

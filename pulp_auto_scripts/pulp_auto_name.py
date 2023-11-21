@@ -1,6 +1,5 @@
 import pyautogui
 
-
 def main():
     name_type = int(input("1:Number\n2:Direction\nInput Name Type: "))
     direction = ["N", "E", "W", "S"]
