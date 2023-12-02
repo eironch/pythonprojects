@@ -1,4 +1,5 @@
 import sys
+import pyperclip
 
 
 def main():
@@ -11,7 +12,12 @@ def main():
     maker_pos = int(input("Input Room Maker Position Kind: "))
 
     if maker_type == 0:
-        if maker_pos == 1:
+        if maker_pos == 0:
+            min_x = 6
+            min_y = 1
+            max_x = 18
+            max_y = 13
+        elif maker_pos == 1:
             min_x = 6
             min_y = 1
             max_x = 12
@@ -72,7 +78,7 @@ def main():
         check_start = ""
 
         if i + 3 < len(tile_name_list):
-            check_start = tile_name_list[i: i + 2] + tile_name_list[i + 1] + tile_name_list[i + 2]
+            check_start = tile_name_list[i] + tile_name_list[i + 1] + tile_name_list[i + 2]
 
         if check_start == "run":
             if tile != '':
@@ -93,6 +99,7 @@ def main():
 def construct_script(tile_list, min_x, min_y, max_x, max_y):
     pos_x = min_x
     pos_y = min_y
+    result = ""
     i = 0
 
     while pos_y <= max_y:
@@ -110,8 +117,11 @@ def construct_script(tile_list, min_x, min_y, max_x, max_y):
             # print(f'checkTileName = name {pos_x},{pos_y}')
             # print(f'if checkTileName != "{tile_list[i]}" then')
             print(f'tell {pos_x},{pos_y} to')
+            result += "\n" + f'tell {pos_x},{pos_y} to'
             print(f'    swap "{tile_list[i]}"')
+            result += "\n" + f'    swap "{tile_list[i]}"'
             print(f'end')
+            result += "\n" + f'end'
             # print(f'end')
 
             i += 1
@@ -119,6 +129,9 @@ def construct_script(tile_list, min_x, min_y, max_x, max_y):
 
         pos_x = min_x
         pos_y += 1
+
+    print("\nCopied to Clipboard!")
+    pyperclip.copy(result)
 
 
 if __name__ == "__main__":

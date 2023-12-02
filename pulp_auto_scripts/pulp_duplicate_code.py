@@ -10,7 +10,7 @@ def main():
     code = "\n" + ''.join(sys.stdin.readlines())
     print("\nResult:")
 
-    for i in range(1, code_quantity + 1):
+    for i in range(code_quantity):
         result += code.replace(num_to_be_replaced, str(i))
 
     print(result)
