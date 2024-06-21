@@ -4,7 +4,7 @@ Welcome to my repository of Python projects that I wrote while learning the lang
 
 ## Projects
 The following projects are included in this repository:
-1. **Ordering App**: A ordering interface for a local business.
+1. **Ordering App**: An ordering interface for a local business.
 
 2. **Calendar App**: Display dates in a clear and organized manner.
 
