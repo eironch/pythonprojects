@@ -1,6 +1,11 @@
 from tkinter import *
 from PIL import ImageTk,Image
 
+global label
+global status
+global image_index
+
+
 def main():
     root = Tk()
     root.title("Image Viewer")
@@ -21,12 +26,9 @@ def main():
 
     image_list = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12]
 
-    global label
-    global status
-    global image_index
     image_index = 1
 
-    status = Label(root, text="Image "  + str(image_index) + " of " + str(len(image_list)), bd=1, relief=SUNKEN, anchor=E)
+    status = Label(root, text="Image " + str(image_index) + " of " + str(len(image_list)), bd=1, relief=SUNKEN, anchor=E)
     label = Label(root, image=image_list[image_index - 1])
     label.grid(row=0, column=0, columnspan=3)
     status.grid(row=3, column=0, columnspan=3, sticky=W+E)
@@ -86,7 +88,7 @@ def main():
         label.grid(row=0, column=0, columnspan=3)
         status.grid(row=3, column=0, columnspan=3, sticky=W + E)
 
-    horizontal = Scale(root, length=512, showvalue=0, from_=0, to=len(image_list) - 1, orient=HORIZONTAL, command=slide_update)
+    horizontal = Scale(root, length=512, showvalue=False, from_=0, to=len(image_list) - 1, orient=HORIZONTAL, command=slide_update)
     button_back = Button(root, text="<<", command=lambda: button_backwards(len(image_list)))
     button_forward = Button(root, text=">>", command=lambda: button_forwards(len(image_list)))
     button_quit = Button(root, text="Quit", command=root.quit)
